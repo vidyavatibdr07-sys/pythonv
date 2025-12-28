@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f6f3;
+  color: #2e2e2e;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Slider */
+.slider {
+  display: flex;
+  width: 400vw;
+  height: 100vh;
+  transition: transform 0.7s ease;
+}
+
+.slide {
+  width: 100vw;
+  flex-shrink: 0;
+  padding: 70px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* DOODLES */
+.doodle {
+  position: absolute;
+  opacity: 0.12;
+}
+
+.doodle.size1 { font-size: 2rem; opacity: 0.12; }
+.doodle.size2 { font-size: 2.5rem; opacity: 0.1; }
+.doodle.size3 { font-size: 3rem; opacity: 0.08; }
+
+/* Headings */
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Slide 1 */
+.hero h1 { font-size: 3.2rem; }
+.hero p { font-size: 1.1rem; max-width: 620px; line-height: 1.8; opacity: 0.85; }
+
+/* Slide 2 - Polaroids */
+.polaroid-gallery {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 14px 14px 32px;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+  transform: rotate(var(--rotate));
+}
+
+.polaroid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  filter: sepia(10%) contrast(95%);
+}
+
+.polaroid span {
+  margin-top: 10px;
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Slide 3 - Letter */
+.letter {
+  background: #ffffff;
+  padding: 45px;
+  border-radius: 28px;
+  max-width: 680px;
+  line-height: 1.9;
+  font-size: 1rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* Slide 4 image container */
+.image-container {
+  width: 70%;             /* bigger image */
+  max-width: 700px;
+  margin: 0 auto;         /* center horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 60%;
+  height: auto;           /* maintain aspect ratio */
+  border-radius: 20px;    /* optional rounded corners */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.caption {
+  margin-top: 15px;
+  text-align: center;
+  color: #2e2e2e;
+}
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  padding: 40px;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  color: #fff;
+}
+
+/* Buttons */
+.buttons {
+  position: fixed;
+  bottom: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  padding: 10px 26px;
+  border-radius: 30px;
+  border: none;
+  background: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Animation */
+.slide.active > * { opacity: 0; transform: translateY(25px); }
+
+.slide.active > * {
+  animation: fadeFloat 1.1s ease forwards,
+             gentleSway 2.2s ease 1.1s forwards;
+}
+
+@keyframes fadeFloat {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gentleSway {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-6px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider" id="slider">
+
+  <!-- Slide 1 -->
+  <div class="slide hero">
+    <!-- 15 doodles, evenly scattered -->
+    <div class="doodle size1" style="top:20px; left:50px;">✿</div>
+    <div class="doodle size2" style="top:80px; left:200px;">♡</div>
+    <div class="doodle size3" style="top:150px; left:400px;">★</div>
+    <div class="doodle size1" style="top:220px; left:600px;">✧</div>
+    <div class="doodle size2" style="top:300px; left:100px;">♡</div>
+    <div class="doodle size3" style="top:380px; left:350px;">✿</div>
+    <div class="doodle size1" style="top:450px; left:550px;">★</div>
+    <div class="doodle size2" style="bottom:50px; right:50px;">✧</div>
+    <div class="doodle size3" style="bottom:100px; left:120px;">♡</div>
+    <div class="doodle size1" style="bottom:150px; right:200px;">✿</div>
+    <div class="doodle size2" style="top:100px; right:500px;">★</div>
+    <div class="doodle size1" style="top:250px; right:400px;">♡</div>
+    <div class="doodle size2" style="bottom:200px; left:400px;">✧</div>
+    <div class="doodle size1" style="bottom:50px; left:500px;">✿</div>
+    <div class="doodle size2" style="top:400px; right:150px;">♡</div>
+
+    <h1>Happy Birthday ABHAY🫶🏻</h1>
+    <p>Happiest Birthday to my FAVORITE person. you're succha sweetu, smart, handsome and kind person ever. I Love you so much❤️❤️</p>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <!-- 15 doodles, evenly scattered -->
+    <div class="doodle size1" style="top:20px; left:40px;">✿</div>
+    <div class="doodle size2" style="top:100px; left:220px;">♡</div>
+    <div class="doodle size3" style="top:180px; left:400px;">★</div>
+    <div class="doodle size1" style="top:260px; left:580px;">✧</div>
+    <div class="doodle size2" style="top:340px; left:120px;">♡</div>
+    <div class="doodle size3" style="top:420px; left:380px;">✿</div>
+    <div class="doodle size1" style="top:500px; left:550px;">★</div>
+    <div class="doodle size2" style="bottom:60px; right:60px;">✧</div>
+    <div class="doodle size3" style="bottom:120px; left:150px;">♡</div>
+    <div class="doodle size1" style="bottom:180px; right:220px;">✿</div>
+    <div class="doodle size2" style="top:140px; right:520px;">★</div>
+    <div class="doodle size1" style="top:260px; right:400px;">♡</div>
+    <div class="doodle size2" style="bottom:220px; left:420px;">✧</div>
+    <div class="doodle size1" style="bottom:60px; left:520px;">✿</div>
+    <div class="doodle size2" style="top:420px; right:160px;">♡</div>
+
+    <h1>Mr.Cool</h1>
+    <div class="polaroid-gallery">
+      <div class="polaroid" style="--rotate:-6deg"><img src="./photo1.jpg"><span>cutuu😚</span></div>
+      <div class="polaroid" style="--rotate:3deg"><img src="./photo2.jpg"><span>🎀✨</span></div>
+      <div class="polaroid" style="--rotate:-2deg"><img src="./photo3.jpg"><span>prettiest eyes♡</span></div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+<div class="slide">
+  <!-- 15 doodles evenly scattered -->
+  <div class="doodle size1" style="top:10px; left:60px;">✿</div>
+  <div class="doodle size2" style="top:90px; left:180px;">♡</div>
+  <div class="doodle size3" style="top:160px; left:420px;">★</div>
+  <div class="doodle size1" style="top:240px; left:580px;">✧</div>
+  <div class="doodle size2" style="top:320px; left:140px;">♡</div>
+  <div class="doodle size3" style="top:400px; left:360px;">✿</div>
+  <div class="doodle size1" style="top:480px; left:540px;">★</div>
+  <div class="doodle size2" style="bottom:70px; right:70px;">✧</div>
+  <div class="doodle size3" style="bottom:130px; left:160px;">♡</div>
+  <div class="doodle size1" style="bottom:190px; right:210px;">✿</div>
+  <div class="doodle size2" style="top:150px; right:500px;">★</div>
+  <div class="doodle size1" style="top:270px; right:380px;">♡</div>
+  <div class="doodle size2" style="bottom:230px; left:430px;">✧</div>
+  <div class="doodle size1" style="bottom:70px; left:520px;">✿</div>
+  <div class="doodle size2" style="top:420px; right:160px;">♡</div>
+
+  <h1>lots of love smileyy</h1>
+
+  <!-- Envelope style letters -->
+  <div class="letter" style="position: relative; overflow: visible; padding: 50px 40px; border-radius: 30px; max-width: 680px; background:#fff; box-shadow: 0 30px 60px rgba(0,0,0,0.08);">
+    <div style="position:absolute; top:-30px; left:-30px; font-size:2.5rem;">💌</div>
+    <div style="position:absolute; bottom:-30px; right:-30px; font-size:2.5rem;">💌</div>
+    To my fav footballer,<br><br>
+    you're the most sporty person who's
+    scoring goals both in field and life.
+    I hope this year brings you quiet wins,
+    laughter, and things that stay.
+    Keep shining like a superstar you are.
+    You'll always be my Ronaldo.<br><br>
+What do you mean you always stayed with me no matter what? How can anyone be so sweett man<br><br>
+You'll always be my girlypop hehe.
+Can't wait to have more and more memories with youu🫂
+  </div>
+</div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <!-- 15 doodles evenly scattered -->
+    <div class="doodle size1" style="top:10px; left:60px;">✿</div>
+    <div class="doodle size2" style="top:90px; left:180px;">♡</div>
+    <div class="doodle size3" style="top:160px; left:420px;">★</div>
+    <div class="doodle size1" style="top:240px; left:580px;">✧</div>
+    <div class="doodle size2" style="top:320px; left:140px;">♡</div>
+    <div class="doodle size3" style="top:400px; left:360px;">✿</div>
+    <div class="doodle size1" style="top:480px; left:540px;">★</div>
+    <div class="doodle size2" style="bottom:70px; right:70px;">✧</div>
+    <div class="doodle size3" style="bottom:130px; left:160px;">♡</div>
+    <div class="doodle size1" style="bottom:190px; right:210px;">✿</div>
+    <div class="doodle size2" style="top:150px; right:500px;">★</div>
+    <div class="doodle size1" style="top:270px; right:380px;">♡</div>
+    <div class="doodle size2" style="bottom:230px; left:430px;">✧</div>
+    <div class="doodle size1" style="bottom:70px; left:520px;">✿</div>
+    <div class="doodle size2" style="top:420px; right:160px;">♡</div>
+
+    <div class="image-container">
+      <img src="./photo4.jpg">
+      <div class="caption">
+        <h2>I'm very greatful to have you in my life</h2>
+        <p>This is my favorite picture. Lots of loveee🧿</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="buttons">
+  <button onclick="prev()">Previous</button>
+  <button onclick="next()">Next</button>
+</div>
+
+<script>
+let index = 0;
+let isSliding = false;
+const slides = document.querySelectorAll(".slide");
+
+function setActiveSlide() {
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+}
+
+function updateSlide() {
+  document.getElementById("slider").style.transform =
+    `translateX(-${index * 100}vw)`;
+  setActiveSlide();
+  isSliding = true;
+  setTimeout(() => isSliding = false, 700);
+}
+
+function next() {
+  if (!isSliding && index < slides.length - 1) {
+    index++;
+    updateSlide();
+  }
+}
+
+function prev() {
+  if (!isSliding && index > 0) {
+    index--;
+    updateSlide();
+  }
+}
+
+setActiveSlide();
+</script>
+
+</body>
+</html>
